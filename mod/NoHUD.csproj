@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>NoHUD</AssemblyName>
-    <Description>My first plugin</Description>
-    <Version>1.0.0</Version>
+    <Description>Hide the HUD</Description>
+    <Version>1.1.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
@@ -23,6 +23,18 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\BombRushCyberfunk\Bomb Rush Cyberfunk_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SlopCrew.API">
+      <HintPath>lib\SlopCrew.API.dll</HintPath>
+    </Reference>
+    <Reference Include="SlopCrew.Common">
+      <HintPath>lib\SlopCrew.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SlopCrew.Plugin">
+      <HintPath>lib\SlopCrew.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Speedometer">
+      <HintPath>lib\SoftGoat-Speedometer.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\BombRushCyberfunk\Bomb Rush Cyberfunk_Data\Managed\Unity.TextMeshPro.dll</HintPath>
