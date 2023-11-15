@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace NoHUD
 {
-    [BepInPlugin("NoHUD", "NoHUD", "1.1.0")]
+    [BepInPlugin("NoHUD", "NoHUD", "1.1.1")]
     [BepInDependency("Speedometer", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.Dragsun.Speedometer", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("SlopCrew.Plugin", BepInDependency.DependencyFlags.SoftDependency)]
