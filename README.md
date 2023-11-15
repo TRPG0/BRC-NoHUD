@@ -14,4 +14,4 @@ Install the mod via [Thunderstore](https://thunderstore.io/c/bomb-rush-cyberfunk
 
 2. Start Bomb Rush Cyberfunk once so that BepInEx can create its required configuration files.
 
-3. Download `NoHUD.dll` from the [Releases](https://github.com/TRPG0/BRC-NoHUD/releases) page and put it into `BepInEx\plugins`.
+3. Download `NoHUD.zip` from the [Releases](https://github.com/TRPG0/BRC-NoHUD/releases) page and extract the contents into `BepInEx\plugins`.
