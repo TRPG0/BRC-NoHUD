@@ -19,6 +19,12 @@ namespace NoHUD.Patches
                 Core.DragsunSpeedLabel = gui.gameplayScreen.transform.Find("Speedometer").gameObject;
                 Core.DragsunSpeedLabel.SetActive(Core.active);
             }
+            if (Core.isSoftGoatSpeedometerLoaded)
+            {
+                GameplayUI gui = Traverse.Create(Reptile.Core.Instance.UIManager).Field<GameplayUI>("gameplay").Value;
+                Core.SoftGoatSpeedBar = gui.gameplayScreen.transform.Find("chargeGroup").Find("chargeBackground(Clone)").gameObject;
+                Core.SoftGoatSpeedBar.SetActive(Core.active);
+            }
         }
     }
 }

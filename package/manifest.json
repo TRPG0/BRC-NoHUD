@@ -1,6 +1,6 @@
 {
     "name": "NoHUD",
-    "version_number": "1.1.0",
+    "version_number": "1.1.1",
     "website_url": "https://github.com/TRPG0/BRC-NoHUD",
     "description": "Toggle the HUD on or off during gameplay.",
     "dependencies": [

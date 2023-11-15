@@ -27,15 +27,6 @@
     <Reference Include="SlopCrew.API">
       <HintPath>lib\SlopCrew.API.dll</HintPath>
     </Reference>
-    <Reference Include="SlopCrew.Common">
-      <HintPath>lib\SlopCrew.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="SlopCrew.Plugin">
-      <HintPath>lib\SlopCrew.Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="Speedometer">
-      <HintPath>lib\SoftGoat-Speedometer.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\BombRushCyberfunk\Bomb Rush Cyberfunk_Data\Managed\Unity.TextMeshPro.dll</HintPath>
     </Reference>

@@ -8,6 +8,8 @@ using UnityEngine.UI;
 using TMPro;
 using BepInEx.Bootstrap;
 using NoHUD.Patches;
+using SlopCrew.API;
+using System.Collections.Generic;
 
 namespace NoHUD
 {
@@ -17,8 +19,8 @@ namespace NoHUD
     [BepInDependency("SlopCrew.Plugin", BepInDependency.DependencyFlags.SoftDependency)]
     public class Core : BaseUnityPlugin
     {
-        public ConfigEntry<KeyCode> configToggleKey;
-        public ConfigEntry<bool> configSlopNames;
+        public static ConfigEntry<KeyCode> configToggleKey;
+        public static ConfigEntry<bool> configSlopNames;
         internal static bool active = true;
 
         internal static bool isDragsunSpeedometerLoaded = false;
@@ -28,14 +30,6 @@ namespace NoHUD
         internal static GameObject SoftGoatSpeedBar;
 
         internal static bool isSlopCrewLoaded = false;
-        internal static bool SlopCrewShowNameplates
-        {
-            get
-            {
-                if (!isSlopCrewLoaded) return false;
-                else return SlopCrewHelper.ShowPlayerNameplates;
-            }
-        }
 
         private void Awake()
         {
@@ -63,18 +57,16 @@ namespace NoHUD
                 else if (plugin.Value.Metadata.GUID == "SlopCrew.Plugin") isSlopCrewLoaded = true;
             }
 
-            if (isSoftGoatSpeedometerLoaded)
-            {
-                Logger.LogInfo("Speedometer (SoftGoat) is loaded. Applying InitializeUI patch.");
-                harmony.PatchAll(typeof(Speedometer_InitializeUI_Patch));
-            }
-
+            if (isSoftGoatSpeedometerLoaded) Logger.LogInfo("Speedometer (SoftGoat) is loaded.");
             if (isDragsunSpeedometerLoaded) Logger.LogInfo("Speedometer (Dragsun) is loaded.");
-
             if (isSlopCrewLoaded)
             {
-                Logger.LogInfo("SlopCrew is loaded. Applying SpawnNameplate patch.");
-                harmony.PatchAll(typeof(AssociatedPlayer_SpawnNameplate_Patch));
+                Logger.LogInfo("SlopCrew is loaded.");
+                var api = APIManager.API;
+                api.OnPlayerCountChanged += (api) =>
+                {
+                    FindSlopCrewNames();
+                };
             }
         }
 
@@ -88,7 +80,6 @@ namespace NoHUD
                 gui.chargeBar.enabled = active;
                 if (SoftGoatSpeedBar != null) SoftGoatSpeedBar.SetActive(active);
                 if (DragsunSpeedLabel != null) DragsunSpeedLabel.SetActive(active);
-                if (isSlopCrewLoaded && configSlopNames.Value) SlopCrewHelper.SetNameplatesActive(active);
 
                 foreach (Image img in gui.gameObject.GetComponentsInChildren<Image>(true))
                 {
@@ -138,5 +129,20 @@ namespace NoHUD
             }
         }
 
+        public static void FindSlopCrewNames()
+        {
+            if (!Reptile.Core.Instance.BaseModule.IsPlayingInStage || Reptile.Core.Instance.BaseModule.IsLoading || !isSlopCrewLoaded || !configSlopNames.Value) return;
+            foreach (Player player in FindObjectsOfType<Player>())
+            {
+                try
+                {
+                    player.transform.Find("RootObject").Find("interactionCapsule").Find("SlopCrew_NameplateContainer").gameObject.SetActive(active);
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+        }
     }
 }
